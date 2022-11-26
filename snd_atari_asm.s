@@ -27,7 +27,7 @@
 
 	XREF	_S_TransferPaintBuffer
 	CNOP	0,4
-_S_TransferPaintBuffer:
+_S_TransferPaintBufferX:
 	movem.l	d2-d7/a2-a3,-(sp)
 
 	move.l	_shm,a1			; a1 shm (struct dma_t)

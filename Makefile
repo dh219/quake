@@ -19,19 +19,20 @@ endif
 NATIVECC=gcc
 
 CC=${bin-prefix}gcc
-AS=vasm
+AS=vasmm68k_mot
 LD=${bin-prefix}ld
 STACK=${bin-prefix}stack
 FLAGS=${bin-prefix}flags
 STRIP=${bin-prefix}strip -s
 
-BASE_CFLAGS=-Dstricmp=strcasecmp -m68060 -Wall -DM68K_MIX -DM68KASM
+#BASE_CFLAGS=-Dstricmp=strcasecmp -m68020-60 -Wall -DM68K_MIX -DM68KASM
+BASE_CFLAGS=-Dstricmp=strcasecmp -m68020-60 -Wall
 RELEASE_CFLAGS=$(BASE_CFLAGS) -O3 -fomit-frame-pointer -ffast-math
 DEBUG_CFLAGS=$(BASE_CFLAGS) -g
 LDFLAGS=-lm
 
 DO_CC=$(CC) $(CFLAGS) -o $@ -c $<
-DO_AS=$(AS) -m68060 -Faout -quiet -phxass -DATARI -DM881 -o $@ $<
+DO_AS=$(AS) -m68030 -m68882 -Faout -quiet -phxass -DATARI -DM881 -o $@ $<
 
 #############################################################################
 # SETUP AND BUILD
@@ -136,24 +137,24 @@ QUAKE_OBJS = \
 	$(BUILDDIR)/obj/snd_atari_asm.o	
 	
 # use -DM68KASM when you want to use the following
-QUAKE_M68K_OBJS = \
-	$(BUILDDIR)/obj/mathlib68k.o \
-	$(BUILDDIR)/obj/r_sky68k.o \
-	$(BUILDDIR)/obj/r_aclip68k.o \
-	$(BUILDDIR)/obj/r_edge68k.o \
-	$(BUILDDIR)/obj/r_light68k.o \
-	$(BUILDDIR)/obj/r_misc68k.o \
-	$(BUILDDIR)/obj/r_surf68k.o \
-	$(BUILDDIR)/obj/common68k.o \
-	$(BUILDDIR)/obj/d_part68k.o \
-	$(BUILDDIR)/obj/r_bsp68k.o \
-	$(BUILDDIR)/obj/d_edge68k.o \
-	$(BUILDDIR)/obj/d_sky68k.o \
-	$(BUILDDIR)/obj/r_draw68k.o \
-	$(BUILDDIR)/obj/r_alias68k.o \
-	$(BUILDDIR)/obj/d_polyset68k.o \
-	$(BUILDDIR)/obj/d_scan68k.o \
-	$(BUILDDIR)/obj/d_sprite68k.o
+#QUAKE_M68K_OBJS = \
+#	$(BUILDDIR)/obj/mathlib68k.o \
+#	$(BUILDDIR)/obj/r_sky68k.o \
+#	$(BUILDDIR)/obj/r_aclip68k.o \
+#	$(BUILDDIR)/obj/r_edge68k.o \
+#	$(BUILDDIR)/obj/r_light68k.o \
+#	$(BUILDDIR)/obj/r_misc68k.o \
+#	$(BUILDDIR)/obj/r_surf68k.o \
+#	$(BUILDDIR)/obj/common68k.o \
+#	$(BUILDDIR)/obj/d_part68k.o \
+#	$(BUILDDIR)/obj/r_bsp68k.o \
+#	$(BUILDDIR)/obj/d_edge68k.o \
+#	$(BUILDDIR)/obj/d_sky68k.o \
+#	$(BUILDDIR)/obj/r_draw68k.o \
+#	$(BUILDDIR)/obj/r_alias68k.o \
+#	$(BUILDDIR)/obj/d_polyset68k.o \
+#	$(BUILDDIR)/obj/d_scan68k.o \
+#	$(BUILDDIR)/obj/d_sprite68k.o
 	
 	
 $(BUILDDIR)/quake.ttp : $(QUAKE_OBJS) $(QUAKE_M68K_OBJS)

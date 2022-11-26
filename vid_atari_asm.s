@@ -269,7 +269,11 @@ _video_atari_move16:
 	add.l	a1,d0
 
 .loop:	REPT	16
-	move16	(a0)+,(a1)+			; 256 bytes at once
+;	move16	(a0)+,(a1)+			; 256 bytes at once
+	move.l	(a0)+,(a1)+			; 256 bytes at once
+	move.l	(a0)+,(a1)+			; 256 bytes at once
+	move.l	(a0)+,(a1)+			; 256 bytes at once
+	move.l	(a0)+,(a1)+			; 256 bytes at once
 	ENDR
 	cmpa.l	d0,a1
 	bne.b	.loop
