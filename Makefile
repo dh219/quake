@@ -25,7 +25,7 @@ STACK=${bin-prefix}stack
 FLAGS=${bin-prefix}flags
 STRIP=${bin-prefix}strip -s
 
-BASE_CFLAGS=-Dstricmp=strcasecmp -m68020-60 -Wall -DM68K_MIX -DM68KASM
+BASE_CFLAGS=-Dstricmp=strcasecmp -m68020-60 -mhard-float -Wall -DM68K_MIX -DM68KASM
 #BASE_CFLAGS=-Dstricmp=strcasecmp -m68020-60 -Wall
 RELEASE_CFLAGS=$(BASE_CFLAGS) -O3 -fomit-frame-pointer -ffast-math
 DEBUG_CFLAGS=$(BASE_CFLAGS) -g
